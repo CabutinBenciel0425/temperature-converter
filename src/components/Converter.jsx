@@ -1,13 +1,31 @@
-export default function Converter({ temp }) {
-  console.log(temp);
+export default function Converter({ temp, setValue, value, onSubmit, error }) {
   return (
     <form className="converter">
-      <label for="tempValue" className="temp-label">
-        Celcius:{" "}
+      <label
+        htmlFor="tempValue"
+        className="temp-label"
+        onClick={() => onSubmit(value)}
+      >
+        {temp.charAt(0).toUpperCase() + temp.slice(1)}:{" "}
       </label>
-      <input type="text" id="tempValue" className="temp-input" />
+      <input
+        className="temp-input"
+        type="number"
+        max="10000"
+        min="-10000"
+        id="tempValue"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      {error && (
+        <span className="error">
+          The value is out of range. Try a lower value.
+        </span>
+      )}
 
-      <div className="temp-btn">Get result</div>
+      <div className="temp-btn" onClick={() => onSubmit(value)}>
+        Get result
+      </div>
     </form>
   );
 }

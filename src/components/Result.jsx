@@ -1,8 +1,11 @@
-export default function Result() {
+export default function Result({ temp, result }) {
   return (
     <div>
       <h2>
-        Fahrenheit: <span className="temp-result">100 °F</span>
+        {temp.charAt(0).toUpperCase() + temp.slice(1)}:{" "}
+        <span className="temp-result">
+          {result} °{temp.charAt(0).toUpperCase()}
+        </span>
       </h2>
     </div>
   );
